@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new CodeExplorerBundle\CodeExplorerBundle(),
+            new \Symfony\Bundle\WebServerBundle\WebServerBundle(),
             new AppBundle\AppBundle(),
         );
 
