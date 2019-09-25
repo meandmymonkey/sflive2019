@@ -28,7 +28,6 @@ include_once __DIR__.'/../app/bootstrap.php.cache';
 // $apcLoader->register(true);
 
 $kernel = new AppKernel('prod', false);
-$kernel->loadClassCache();
 
 // If you use HTTP Cache to improve application performance, uncomment the following lines:
 // See http://symfony.com/doc/current/book/http_cache.html#symfony-reverse-proxy
