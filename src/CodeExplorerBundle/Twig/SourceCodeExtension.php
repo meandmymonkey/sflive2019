@@ -11,6 +11,8 @@
 
 namespace CodeExplorerBundle\Twig;
 
+use Twig\TemplateWrapper;
+
 /**
  * CAUTION: this is an extremely advanced Twig extension. It's used to get the
  * source code of the controller and the template used to render the current
@@ -45,11 +47,11 @@ class SourceCodeExtension extends \Twig_Extension
         );
     }
 
-    public function showSourceCode(\Twig_Environment $twig, \Twig_Template $template)
+    public function showSourceCode(\Twig_Environment $twig, string $template)
     {
         return $twig->render('@CodeExplorer/source_code.html.twig', array(
             'controller' => $this->getController(),
-            'template'   => $this->getTemplateSource($template),
+            'template'   => $this->getTemplateSource($twig->load($template))
         ));
     }
 
@@ -97,7 +99,7 @@ class SourceCodeExtension extends \Twig_Extension
         return new \ReflectionFunction($callable);
     }
 
-    private function getTemplateSource(\Twig_Template $template)
+    private function getTemplateSource(TemplateWrapper $template)
     {
         return array(
             // Twig templates are not always stored in files, and so there is no
