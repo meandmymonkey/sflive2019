@@ -11,7 +11,13 @@
 
 namespace CodeExplorerBundle\Twig;
 
+use Twig\Environment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+use Twig\Extension\AbstractExtension;
 use Twig\TemplateWrapper;
+use Twig\TwigFunction;
 
 /**
  * CAUTION: this is an extremely advanced Twig extension. It's used to get the
@@ -22,7 +28,7 @@ use Twig\TemplateWrapper;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class SourceCodeExtension extends \Twig_Extension
+class SourceCodeExtension extends AbstractExtension
 {
     private $controller;
     private $kernelRootDir;
@@ -43,11 +49,19 @@ class SourceCodeExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('show_source_code', array($this, 'showSourceCode'), array('is_safe' => array('html'), 'needs_environment' => true)),
+            new TwigFunction('show_source_code', array($this, 'showSourceCode'), array('is_safe' => array('html'), 'needs_environment' => true)),
         );
     }
 
-    public function showSourceCode(\Twig_Environment $twig, string $template)
+    /**
+     * @param Environment $twig
+     * @param string $template
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function showSourceCode(Environment $twig, string $template)
     {
         return $twig->render('@CodeExplorer/source_code.html.twig', array(
             'controller' => $this->getController(),
@@ -83,6 +97,7 @@ class SourceCodeExtension extends \Twig_Extension
      * @param callable $callable
      *
      * @return \ReflectionFunctionAbstract
+     * @throws \ReflectionException
      */
     private function getCallableReflector($callable)
     {
