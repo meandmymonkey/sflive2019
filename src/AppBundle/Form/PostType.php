@@ -61,7 +61,7 @@ class PostType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Post',
+            'data_class' => 'App\Entity\Post',
         ));
     }
 }

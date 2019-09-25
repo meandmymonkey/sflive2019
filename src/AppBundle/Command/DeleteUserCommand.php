@@ -11,7 +11,7 @@
 
 namespace AppBundle\Command;
 
-use AppBundle\Entity\User;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -108,8 +108,8 @@ HELP
         $username = $input->getArgument('username');
         $this->usernameValidator($username);
 
-        $repository = $this->entityManager->getRepository('AppBundle:User');
-        /** @var User $user */
+        $repository = $this->entityManager->getRepository('App:User');
+        /** @var \App\Entity\User $user */
         $user = $repository->findOneByUsername($username);
 
         if (null === $user) {
