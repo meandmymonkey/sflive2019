@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use AppBundle\Entity\Post;
+use App\Entity\Post;
 
 /**
  * Controller used to manage blog contents in the backend.
@@ -53,7 +53,7 @@ class BlogController extends Controller
     public function indexAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $posts = $entityManager->getRepository('AppBundle:Post')->findAll();
+        $posts = $entityManager->getRepository('App:Post')->findAll();
 
         return $this->render('admin/blog/index.html.twig', array('posts' => $posts));
     }
@@ -176,7 +176,7 @@ class BlogController extends Controller
      *
      * The Security annotation value is an expression (if it evaluates to false,
      * the authorization mechanism will prevent the user accessing this resource).
-     * The isAuthor() method is defined in the AppBundle\Entity\Post entity.
+     * The isAuthor() method is defined in the App\Entity\Post entity.
      */
     public function deleteAction(Request $request, Post $post)
     {
@@ -204,7 +204,7 @@ class BlogController extends Controller
      * HTTP DELETE method.
      * See http://symfony.com/doc/current/cookbook/routing/method_parameters.html.
      *
-     * @param Post $post The post object
+     * @param \App\Entity\Post $post The post object
      *
      * @return \Symfony\Component\Form\Form The form
      */

@@ -11,8 +11,8 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Comment;
-use AppBundle\Entity\Post;
+use App\Entity\Comment;
+use App\Entity\Post;
 use AppBundle\Form\CommentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -38,7 +38,7 @@ class BlogController extends Controller
      */
     public function indexAction($page)
     {
-        $query = $this->getDoctrine()->getRepository('AppBundle:Post')->queryLatest();
+        $query = $this->getDoctrine()->getRepository('App:Post')->queryLatest();
 
         $paginator = $this->get('knp_paginator');
         $posts = $paginator->paginate($query, $page, Post::NUM_ITEMS);
@@ -78,7 +78,7 @@ class BlogController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Comment $comment */
+            /** @var \App\Entity\Comment $comment */
             $comment = $form->getData();
             $comment->setAuthorEmail($this->getUser()->getEmail());
             $comment->setPost($post);

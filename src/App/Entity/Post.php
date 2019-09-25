@@ -1,7 +1,9 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
+use App\Entity\Comment;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;

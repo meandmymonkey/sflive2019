@@ -11,7 +11,7 @@
 
 namespace AppBundle\Command;
 
-use AppBundle\Entity\User;
+use App\Entity\User;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Helper\Table;
@@ -87,7 +87,7 @@ HELP
     {
         $maxResults = $input->getOption('max-results');
         // Use ->findBy() instead of ->findAll() to allow result sorting and limiting
-        $users = $this->entityManager->getRepository('AppBundle:User')->findBy(array(), array('id' => 'DESC'), $maxResults);
+        $users = $this->entityManager->getRepository('App:User')->findBy(array(), array('id' => 'DESC'), $maxResults);
 
         // Doctrine query returns an array of objects and we need an array of plain arrays
         $usersAsPlainArrays = array_map(function (User $user) {

@@ -9,8 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
+use App\Entity\Post;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
