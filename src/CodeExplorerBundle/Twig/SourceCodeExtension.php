@@ -107,7 +107,7 @@ class SourceCodeExtension extends \Twig_Extension
             // one or stored in bundles. This is enough for the needs of the demo app.
             'file_path' => $this->kernelRootDir.'/Resources/views/'.$template->getTemplateName(),
             'starting_line' => 1,
-            'source_code' => $template->getSource(),
+            'source_code' => $template->getSourceContext()->getCode(),
         );
     }
 
@@ -134,11 +134,5 @@ class SourceCodeExtension extends \Twig_Extension
         }
 
         return $formattedCode;
-    }
-
-    // the name of the Twig extension must be unique in the application
-    public function getName()
-    {
-        return 'code_explorer_source_code';
     }
 }
