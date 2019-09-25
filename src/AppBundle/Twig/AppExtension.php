@@ -26,7 +26,7 @@ use Symfony\Component\Intl\Intl;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  * @author Julien ITARD <julienitard@gmail.com>
  */
-class AppExtension extends \Twig_Extension
+class AppExtension extends \Twig\Extension\AbstractExtension
 {
     /**
      * @var Markdown
@@ -50,7 +50,7 @@ class AppExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('md2html', array($this, 'markdownToHtml'), array('is_safe' => array('html'))),
+            new \Twig\TwigFilter('md2html', array($this, 'markdownToHtml'), array('is_safe' => array('html'))),
         );
     }
 
@@ -60,7 +60,7 @@ class AppExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('locales', array($this, 'getLocales')),
+            new \Twig\TwigFunction('locales', array($this, 'getLocales')),
         );
     }
 
